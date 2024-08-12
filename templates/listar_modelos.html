@@ -1,0 +1,40 @@
+{% extends 'template_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>Listado de Modelos</h4>
+            <table class="table">     
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Fabricante</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for modelo in modelos %}
+                    <tr>
+                        <td>{{ modelo.nombre }}</td>
+                        <td>{{ modelo.fabricante.nombre }}</td>
+                        <td><a href="{{ url_for('editar_modelo', id=modelo.id) }}" class="btn btn-success">Editar</a></td>
+                        <td>
+                            <form action="{{ url_for('eliminar_modelo', id=modelo.id) }}" method="post" onsubmit="return confirm('¿Estás seguro de que quieres borrar este modelo?');">
+                                <button type="submit" class="btn btn-danger">Borrar</button>
+                            </form>
+                        </td>                    
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <a href="{{ url_for('crear_modelo') }}" class="btn btn-primary mb-2">Agregar Nuevo Modelo</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

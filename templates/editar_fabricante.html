@@ -1,0 +1,20 @@
+{% extends 'template_base.html' %}
+
+{% block content %}
+<div class="container"
+    <div class="row">
+        <div class="col-6">
+            <h4>Editar Fabricante</h4>
+            <form action="" method="post">
+                <label for="nombre">Nombre</label>
+                <input type="text" name="nombre" class="form-control mb-2" value="{{ fabricante.nombre }}" required>
+                
+                <label for="pais_origen">Origen</label>
+                <input type="text" name="pais_origen" class="form-control mb-2" value="{{ fabricante.pais_origen }}" required>
+                
+                <button type="submit" class="btn btn-success">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

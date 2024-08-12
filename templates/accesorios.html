@@ -1,0 +1,36 @@
+{% extends 'template_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>Listado de Accesorios</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Modelo</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for accesorio in accesorios %}
+                    <tr>
+                        <td>{{ accesorio.tipo }}</td>
+                        <td>{{ accesorio.modelo.nombre }}</td> 
+                        <td><a href="{{ url_for('editar_accesorio', id=accesorio.id) }}" class="btn btn-success">Editar</a></td>
+                        <td>
+                            <form action="{{ url_for('borrar_accesorio', id=accesorio.id) }}" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar este accesorio?');">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ url_for('nuevo_accesorio') }}" class="btn btn-primary">Agregar Nuevo Accesorio</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "template_base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Editar Marca</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ marca.nombre }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Actualizar Marca</button>
+    </form>
+</div>
+{% endblock %}

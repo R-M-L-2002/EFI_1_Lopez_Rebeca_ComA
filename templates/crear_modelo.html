@@ -1,0 +1,26 @@
+{% extends 'template_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>Ingresar Nuevo Modelo</h4>
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Modelo</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre del Modelo" required>
+                </div>
+                <div class="form-group">
+                    <label for="fabricante_id">Fabricante</label>
+                    <select name="fabricante_id" class="form-control" required>
+                        {% for fabricante in fabricantes %}
+                        <option value="{{ fabricante.id }}">{{ fabricante.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Guardar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

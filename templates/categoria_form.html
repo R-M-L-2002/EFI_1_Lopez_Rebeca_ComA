@@ -1,0 +1,18 @@
+{% extends 'template_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>{% if categoria %}Editar{% else %}Nueva{% endif %} Categoría</h4>
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" class="form-control" placeholder="Nombre de la Categoría" value="{{ categoria.nombre if categoria else '' }}" required>
+                </div>
+                <button type="submit" class="btn btn-success">{% if categoria %}Actualizar{% else %}Guardar{% endif %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

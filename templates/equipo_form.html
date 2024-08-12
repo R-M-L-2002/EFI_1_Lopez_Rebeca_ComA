@@ -1,0 +1,78 @@
+{% extends "template_base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{% if equipo %} Editar {% else %} Nuevo {% endif %} Equipo</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ equipo.nombre if equipo else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" name="precio" class="form-control" step="0.01" value="{{ equipo.precio if equipo else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="categoria_id">Categoría</label>
+            <select id="categoria_id" name="categoria_id" class="form-control" required>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.id }}" {% if equipo and equipo.categoria_id == categoria.id %}selected{% endif %}>
+                        {{ categoria.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="marca_id">Marca</label>
+            <select id="marca_id" name="marca_id" class="form-control" required>
+                {% for marca in marcas %}
+                    <option value="{{ marca.id }}" {% if equipo and equipo.marca_id == marca.id %}selected{% endif %}>
+                        {{ marca.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="modelo_id">Modelo</label>
+            <select id="modelo_id" name="modelo_id" class="form-control" required>
+                {% for modelo in modelos %}
+                    <option value="{{ modelo.id }}" {% if equipo and equipo.modelo_id == modelo.id %}selected{% endif %}>
+                        {{ modelo.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="caracteristica_id">Característica</label>
+            <select id="caracteristica_id" name="caracteristica_id" class="form-control" required>
+                {% for caracteristica in caracteristicas %}
+                    <option value="{{ caracteristica.id }}" {% if equipo and equipo.caracteristica_id == caracteristica.id %}selected{% endif %}>
+                        {{ caracteristica.tipo }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="accesorio_id">Accesorio</label>
+            <select id="accesorio_id" name="accesorio_id" class="form-control" required>
+                {% for accesorio in accesorios %}
+                    <option value="{{ accesorio.id }}" {% if equipo and equipo.accesorio_id == accesorio.id %}selected{% endif %}>
+                        {{ accesorio.tipo }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            {% if equipo %} Actualizar {% else %} Crear {% endif %}
+        </button>
+    </form>
+</div>
+{% endblock %}

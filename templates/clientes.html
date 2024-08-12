@@ -1,0 +1,32 @@
+{% extends "template_base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Clientes</h1>
+    <a href="{{ url_for('nuevo_cliente') }}" class="btn btn-primary mb-3">Nuevo Cliente</a>
+    
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.id }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>
+                    <a href="{{ url_for('editar_cliente', id=cliente.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                    <form action="{{ url_for('borrar_cliente', id=cliente.id) }}" method="post" style="display:inline;">
+                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

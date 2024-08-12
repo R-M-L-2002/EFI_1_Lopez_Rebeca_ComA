@@ -1,0 +1,38 @@
+{% extends 'template_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>Listado de Características</h4>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Tipo</th>
+                        <th>Descripción</th>
+                        <th>Modelo</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for caracteristica in caracteristicas %}
+                    <tr>
+                        <td>{{ caracteristica.tipo }}</td>
+                        <td>{{ caracteristica.descripcion }}</td>
+                        <td>{{ caracteristica.modelo.nombre }}</td>
+                        <td><a href="{{ url_for('editar_caracteristica', id=caracteristica.id) }}" class="btn btn-success">Editar</a></td>
+                        <td>
+                            <form action="{{ url_for('borrar_caracteristica', id=caracteristica.id) }}" method="post" onsubmit="return confirm('¿Estás seguro de que quieres eliminar esta característica?');">
+                                <button type="submit" class="btn btn-danger">Eliminar</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <a href="{{ url_for('nueva_caracteristica') }}" class="btn btn-primary">Agregar Nueva Característica</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

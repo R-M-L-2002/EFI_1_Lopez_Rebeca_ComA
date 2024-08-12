@@ -1,0 +1,26 @@
+{% extends 'template_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>Editar Modelo</h4>
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre del Modelo</label>
+                    <input type="text" name="nombre" class="form-control" value="{{ modelo.nombre }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="fabricante_id">Fabricante</label>
+                    <select name="fabricante_id" class="form-control" required>
+                        {% for fabricante in fabricantes %}
+                        <option value="{{ fabricante.id }}" {% if fabricante.id == modelo.fabricante_id %}selected{% endif %}>{{ fabricante.nombre }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success">Actualizar</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

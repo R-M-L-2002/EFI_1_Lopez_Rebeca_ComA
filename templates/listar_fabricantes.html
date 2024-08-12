@@ -1,0 +1,40 @@
+{% extends 'template_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>Listado de Fabricantes</h4>
+            <table class="table">     
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Origen</th>
+                        <th>Editar</th>
+                        <th>Borrar</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for fabricante in fabricantes %}
+                    <tr>
+                        <td>{{ fabricante.nombre }}</td>
+                        <td>{{ fabricante.pais_origen }}</td>
+                        <td><a href="{{ url_for('editar_fabricante', id=fabricante.id) }}" class="btn btn-success">Editar</a></td>
+                        <td>
+                            <form action="{{ url_for('eliminar_fabricante', id=fabricante.id) }}" method="post" onsubmit="return confirm('¿Estás seguro de que quieres borrar este fabricante?');">
+                                <button type="submit" class="btn btn-danger">Borrar</button>
+                            </form>
+                        </td>                    
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <a href="{{ url_for('crear_fabricante') }}" class="btn btn-primary mb-2">Agregar Nuevo Fabricante</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

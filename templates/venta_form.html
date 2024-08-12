@@ -1,0 +1,45 @@
+{% extends "template_base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{% if venta %} Editar {% else %} Nueva {% endif %} Venta</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="cliente_id">Cliente</label>
+            <select id="cliente_id" name="cliente_id" class="form-control" required>
+                {% for cliente in clientes %}
+                    <option value="{{ cliente.id }}" {% if venta and venta.cliente_id == cliente.id %}selected{% endif %}>
+                        {{ cliente.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="equipo_id">Equipo</label>
+            <select id="equipo_id" name="equipo_id" class="form-control" required>
+                {% for equipo in equipos %}
+                    <option value="{{ equipo.id }}" {% if venta and venta.equipo_id == equipo.id %}selected{% endif %}>
+                        {{ equipo.nombre }}
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="number" id="precio" name="precio" class="form-control" step="0.01" value="{{ venta.precio if venta else '' }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="fecha">Fecha</label>
+            <input type="date" id="fecha" name="fecha" class="form-control" value="{{ venta.fecha if venta else '' }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            {% if venta %} Actualizar {% else %} Crear {% endif %}
+        </button>
+    </form>
+</div>
+{% endblock %}

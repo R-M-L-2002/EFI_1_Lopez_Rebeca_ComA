@@ -1,0 +1,36 @@
+{% extends "template_base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Inventarios</h1>
+    <a href="{{ url_for('nuevo_inventario') }}" class="btn btn-primary mb-3">Agregar Nuevo Equipo</a>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Proveedor</th>
+                <th>Cantidad</th>
+                <th>Fecha</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for inventario in inventarios %}
+                <tr>
+                    <td>{{ inventario.nombre }}</td>
+                    <td>{{ inventario.proveedor.nombre }}</td>
+                    <td>{{ inventario.cantidad }}</td>
+                    <td>{{ inventario.fecha.strftime('%Y-%m-%d') }}</td>
+                    <td>
+                        <a href="{{ url_for('editar_inventario', id=inventario.id) }}" class="btn btn-warning btn-sm">Editar</a>
+                        <form action="{{ url_for('borrar_inventario', id=inventario.id) }}" method="post" style="display:inline;">
+                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de que quieres borrar este inventario?')">Borrar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

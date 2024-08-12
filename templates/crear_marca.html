@@ -1,0 +1,16 @@
+{% extends "template_base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>Crear Nueva Marca</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Crear Marca</button>
+    </form>
+</div>
+{% endblock %}

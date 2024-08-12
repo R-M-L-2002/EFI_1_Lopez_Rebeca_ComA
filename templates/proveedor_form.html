@@ -1,0 +1,22 @@
+{% extends 'template_base.html' %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <h4>{% if proveedor %}Editar{% else %}Nuevo{% endif %} Proveedor</h4>
+            <form action="" method="post">
+                <div class="form-group">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" class="form-control" placeholder="Nombre del Proveedor" value="{{ proveedor.nombre if proveedor else '' }}" required>
+                </div>
+                <div class="form-group">
+                    <label for="contacto">Contacto</label>
+                    <input type="text" name="contacto" id="contacto" class="form-control" placeholder="Contacto del Proveedor" value="{{ proveedor.contacto if proveedor else '' }}" required>
+                </div>
+                <button type="submit" class="btn btn-success">{% if proveedor %}Actualizar{% else %}Guardar{% endif %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,51 @@
+{% extends "template_base.html" %}
+
+{% block title %}Inicio{% endblock %}
+
+{% block content %}
+    <h1>Bienvenido!!</h1>
+    <p>Este sistema permite la gestión integral de un local de venta de celulares. A continuación, se presenta un resumen de las funcionalidades disponibles:</p>
+
+    <div class="container">
+        <h2>Resumen de Modelos</h2>
+        <div class="row">
+            <div class="col-md-12">
+                <h4>Marca</h4>
+                <p>Representa las marcas de equipos. Cada marca tiene un <code>id</code> único y un <code>nombre</code>. Está relacionada con <code>Equipo</code>.</p>
+    
+                <h4>Fabricante</h4>
+                <p>Representa los fabricantes de modelos. Cada fabricante tiene un <code>id</code>, <code>nombre</code>, y <code>pais_origen</code>. Está relacionado con <code>Modelo</code>.</p>
+    
+                <h4>Modelo</h4>
+                <p>Representa los modelos de equipos. Cada modelo tiene un <code>id</code>, <code>nombre</code>, y una relación con <code>Fabricante</code>. Está asociado con <code>Equipo</code>, <code>Caracteristica</code>, y <code>Accesorio</code>.</p>
+    
+                <h4>Categoria</h4>
+                <p>Representa las categorías de equipos. Cada categoría tiene un <code>id</code> y un <code>nombre</code>. Está relacionada con <code>Equipo</code>.</p>
+    
+                <h4>Caracteristica</h4>
+                <p>Describe características específicas de los modelos. Cada característica tiene un <code>id</code>, <code>tipo</code>, <code>descripcion</code>, y está asociada a <code>Modelo</code>. Está relacionada con <code>Equipo</code>.</p>
+    
+                <h4>Stock</h4>
+                <p>Representa el inventario de equipos. Cada stock tiene un <code>id</code>, <code>cantidad</code>, <code>ubicacion</code>, y está asociado con <code>Equipo</code>. Incluye un estado de disponibilidad.</p>
+    
+                <h4>Proveedor</h4>
+                <p>Representa los proveedores de inventarios. Cada proveedor tiene un <code>id</code>, <code>nombre</code>, y <code>contacto</code>. Está relacionado con <code>Inventario</code>.</p>
+    
+                <h4>Accesorio</h4>
+                <p>Describe accesorios para modelos. Cada accesorio tiene un <code>id</code>, <code>tipo</code>, y está asociado con <code>Modelo</code>. Está relacionado con <code>Equipo</code>.</p>
+    
+                <h4>Equipo</h4>
+                <p>Representa los equipos disponibles. Cada equipo tiene un <code>id</code>, <code>nombre</code>, <code>precio</code>, y está asociado con <code>Categoria</code>, <code>Marca</code>, <code>Modelo</code>, <code>Caracteristica</code>, y opcionalmente <code>Accesorio</code>. Está relacionado con <code>Stock</code>.</p>
+    
+                <h4>Inventario</h4>
+                <p>Representa el inventario gestionado por proveedores. Cada inventario tiene un <code>id</code>, <code>nombre</code>, <code>cantidad</code>, <code>fecha</code>, y está asociado con <code>Proveedor</code>.</p>
+    
+                <h4>Cliente</h4>
+                <p>Representa a los clientes que realizan compras. Cada cliente tiene un <code>id</code> y <code>nombre</code>. Está relacionado con <code>Venta</code>.</p>
+    
+                <h4>Venta</h4>
+                <p>Registra las ventas realizadas. Cada venta tiene un <code>id</code>, <code>cliente_id</code>, <code>equipo_id</code>, <code>precio</code>, y <code>fecha</code>. Está asociado con <code>Equipo</code>.</p>
+            </div>
+        </div>
+    </div>
+{% endblock %}

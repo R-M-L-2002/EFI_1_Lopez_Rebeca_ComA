@@ -1,0 +1,18 @@
+{% extends "template_base.html" %}
+
+{% block content %}
+<div class="container">
+    <h1>{% if cliente %} Editar {% else %} Nuevo {% endif %} Cliente</h1>
+
+    <form method="post">
+        <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" class="form-control" value="{{ cliente.nombre if cliente else '' }}" required>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+            {% if cliente %} Actualizar {% else %} Crear {% endif %}
+        </button>
+    </form>
+</div>
+{% endblock %}
